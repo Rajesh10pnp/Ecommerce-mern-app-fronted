@@ -6,7 +6,7 @@ import { useCart } from "../context/cart";
 import axios from "axios";
 import toast from "react-hot-toast";
 import Layout from "./../components/Layout/Layout";
-// import { AiOutlineReload } from "react-icons/ai/AiOutlineReload";
+import { AiOutlineReload } from "react-icons/ai";
 import { API } from "../config";
 import "../styles/Homepage.css";
 
@@ -42,7 +42,7 @@ const HomePage = () => {
     try {
       setLoading(true);
       const { data } = await axios.get(
-        `${API}/api/v1/product/product-list/${page}`
+        `${API}/api/v1/product/product-list/${page}`,
       );
       setLoading(false);
       setProducts(data.products);
@@ -71,7 +71,7 @@ const HomePage = () => {
     try {
       setLoading(true);
       const { data } = await axios.get(
-        `${API}/api/v1/product/product-list/${page}`
+        `${API}/api/v1/product/product-list/${page}`,
       );
       setLoading(false);
       setProducts([...products, ...data?.products]);
@@ -190,7 +190,7 @@ const HomePage = () => {
                         setCart([...cart, p]);
                         localStorage.setItem(
                           "cart",
-                          JSON.stringify([...cart, p])
+                          JSON.stringify([...cart, p]),
                         );
                         toast.success("Item Added to cart");
                       }}

@@ -34,9 +34,9 @@ const HomePage = () => {
   };
 
   useEffect(() => {
-    getAllCategory();
-    getTotal();
-  }, []);
+    if (checked.length || radio.length) filterProduct();
+  }, [checked, radio, filterProduct]);
+
   //get products
   const getAllProducts = async () => {
     try {

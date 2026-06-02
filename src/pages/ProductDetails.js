@@ -14,12 +14,12 @@ const ProductDetails = () => {
   //initalp details
   useEffect(() => {
     if (params?.slug) getProduct();
-  }, [params?.slug]);
+  }, [params?.slug, getProduct]);
   //getProduct
   const getProduct = async () => {
     try {
       const { data } = await axios.get(
-        `${API}/api/v1/product/get-product/${params.slug}`
+        `${API}/api/v1/product/get-product/${params.slug}`,
       );
       setProduct(data?.product);
       getSimilarProduct(data?.product._id, data?.product.category._id);
@@ -31,7 +31,7 @@ const ProductDetails = () => {
   const getSimilarProduct = async (pid, cid) => {
     try {
       const { data } = await axios.get(
-        `${API}/api/v1/product/related-product/${pid}/${cid}`
+        `${API}/api/v1/product/related-product/${pid}/${cid}`,
       );
       setRelatedProducts(data?.products);
     } catch (error) {
